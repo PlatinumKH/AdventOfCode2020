@@ -14,10 +14,11 @@ public class solution {
     readInput(filePath, entries);
 
     System.out.println(partOne(entries));
+    System.out.println(partTwo(entries));
 
   }
 
-  public static int partOne(PasswordEntry[] entries){
+  public static int partOne(PasswordEntry[] entries) {
     int count = 0;
 
     for (int i = 0; i < 1000; i++){
@@ -25,6 +26,16 @@ public class solution {
     }
 
     return count;
+  }
+  
+  public static int partTwo(PasswordEntry[] entries) {
+	    int count = 0;
+
+	    for (int i = 0; i < 1000; i++){
+	      if (entries[i].isValidPartTwo()) count++;
+	    }
+
+	    return count;
   }
 
     private static String readInput(String filePath, PasswordEntry[] entries) {

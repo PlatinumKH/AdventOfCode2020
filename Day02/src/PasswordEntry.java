@@ -23,10 +23,11 @@ private Scanner scanner;
   }
 
   boolean isValid() {
-    return (countChar(this.password, this.letter) >= this.min)
-        && (countChar(this.password, this.letter) <= this.max);
+    return (countChar(password, letter) >= min)
+        && (countChar(password, letter) <= max);
   }
 
+  // Part one
   public int countChar(String str, char c) {
     int count = 0;
 
@@ -36,6 +37,15 @@ private Scanner scanner;
     }
 
     return count;
+  }
+  
+  // Part two
+  boolean isValidPartTwo() {
+	  
+	  return !((password.charAt(min - 1) == letter) 
+		&& password.charAt(max - 1) == letter)
+	    && ((password.charAt(min - 1) == letter) 
+	    || password.charAt(max - 1) == letter);
   }
 
 }
