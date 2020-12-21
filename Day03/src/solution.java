@@ -16,18 +16,40 @@ public class solution {
 		readInput(filePath, map);
 		
 		System.out.println(partOne(map));
+		System.out.println(partTwo(map));
 
 	}
 	
 	static int partOne(char[][] map) {
-		int column = 0;
 		int count = 0;
 		
-		for (int row = 0; row < 323; row++) {
+		for (int row = 0, column = 0; row < 323; row++) {
 			if (map[row][column] == '#')
 				count++;
 			column = (column + 3) % 31;
 		}
+		
+		return count;
+	}
+	
+	static long partTwo(char[][] map) {
+		return checkHowManyTreesInPath(map, 1,1)
+			   *checkHowManyTreesInPath(map,1,3)
+			   *checkHowManyTreesInPath(map,1,5)
+			   *checkHowManyTreesInPath(map,1,7)
+		   	   *checkHowManyTreesInPath(map,2,1);
+	}
+	
+	static long checkHowManyTreesInPath(char[][] map, int rowDelta, int columnDelta) {
+		int count = 0;
+		
+		for (int row = 0, column = 0; row < 323; row += rowDelta) {
+			if (map[row][column] == '#')
+				count++;
+			column = (column + columnDelta) % 31;
+		}
+		
+		System.out.println(count);
 		
 		return count;
 	}
