@@ -7,7 +7,7 @@ public class PasswordEntry {
   int max;
   char letter;
   String password;
-private Scanner scanner;
+  private Scanner scanner;
 
   PasswordEntry(String entry){
 
