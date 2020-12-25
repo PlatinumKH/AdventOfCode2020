@@ -7,8 +7,8 @@ public class Passport extends Converter{
 	int issueYear;
 	int expirationYear;
 	String height;
-	Color hairColor;
-	Color eyeColor;
+	String hairColor;
+	String eyeColor;
 	String passportID;
 	int countryID;
 	
@@ -44,12 +44,12 @@ public class Passport extends Converter{
             	height = (String) value;
                 break; 
             case "hcl": 
-            	hairColor = (Color) convertAcronym(key); 
-            	hairColor = Color.decode((String) value);
+            	hairColor = (String) convertAcronym(key); 
+            	hairColor = (String) value;
                 break; 
             case "ecl": 
-            	eyeColor = (Color) convertAcronym(key); 
-            	eyeColor = Color.decode((String) value);
+            	eyeColor = (String) convertAcronym(key); 
+            	eyeColor = (String) value;
                 break; 
             case "pid":
             	passportID = (String) convertAcronym(key);
@@ -64,13 +64,19 @@ public class Passport extends Converter{
 	}
 	
 	boolean isValidPassport() {
-		return birthYear != 0
-			&& issueYear != 0
-			&& expirationYear != 0
-			&& !height.isEmpty()
-			&& !hairColor.equals(0)
-			&& !eyeColor.equals(0)
-			&& !passportID.isEmpty();
+    try {
+        return birthYear != 0
+            && issueYear != 0
+            && expirationYear != 0
+            && !height.isEmpty()
+            && !hairColor.isEmpty()
+            && !eyeColor.isEmpty()
+            && !passportID.isEmpty();
+        }
+        catch(Exception e) {
+            return false;
+        }
+		
 	}
 	
 }

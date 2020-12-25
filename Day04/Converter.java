@@ -10,8 +10,8 @@ public class Converter {
 		acronyms.put("iyr", new Integer(0));
 		acronyms.put("eyr", new Integer(0));
 		acronyms.put("hgt", new String());
-		acronyms.put("hcl", new Color(0));
-		acronyms.put("ecl", new Color(0));
+		acronyms.put("hcl", new String());
+		acronyms.put("ecl", new String());
 		acronyms.put("pid", new String());
 		acronyms.put("cid", new Integer(0));
 	}
