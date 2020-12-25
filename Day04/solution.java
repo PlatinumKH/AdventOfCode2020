@@ -38,6 +38,10 @@ public class solution {
             		values.clear();
             	}
             });
+            // Capture the last passport
+            Passport newEntry = new Passport(values);
+            passports.add(newEntry);
+            values.clear();
         }
         catch (IOException e)
         {

@@ -3,14 +3,14 @@ import java.util.Map;
 
 public class Passport extends Converter{
 
-	int birthYear;
-	int issueYear;
-	int expirationYear;
-	String height;
-	String hairColor;
-	String eyeColor;
-	String passportID;
-	int countryID;
+	int birthYear = 0;
+	int issueYear = 0;
+	int expirationYear = 0;
+	String height = "";
+	String hairColor = "";
+	String eyeColor = "";
+	String passportID = "";
+	int countryID = 0;
 	
 	Passport(Map<String, Object> values){
 		
@@ -64,18 +64,13 @@ public class Passport extends Converter{
 	}
 	
 	boolean isValidPassport() {
-    try {
-        return birthYear != 0
-            && issueYear != 0
-            && expirationYear != 0
-            && !height.isEmpty()
-            && !hairColor.isEmpty()
-            && !eyeColor.isEmpty()
-            && !passportID.isEmpty();
-        }
-        catch(Exception e) {
-            return false;
-        }
+    return birthYear != 0
+        && issueYear != 0
+        && expirationYear != 0
+        && !height.isEmpty()
+        && !hairColor.isEmpty()
+        && !eyeColor.isEmpty()
+        && !passportID.isEmpty();
 		
 	}
 	
