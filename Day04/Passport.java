@@ -29,33 +29,41 @@ public class Passport extends Converter{
         {
             case "byr":
             	birthYear = (int) convertAcronym(key);
+            	birthYear = (int) Integer.parseInt(value.toString());
                 break; 
             case "iyr":
             	issueYear = (int) convertAcronym(key);
+            	issueYear = (int) Integer.parseInt(value.toString());
                 break; 
             case "eyr": 
             	expirationYear = (int) convertAcronym(key);
+            	expirationYear = (int) Integer.parseInt(value.toString());
                 break; 
             case "hgt": 
             	height = (String) convertAcronym(key);
+            	height = (String) value;
                 break; 
             case "hcl": 
             	hairColor = (Color) convertAcronym(key); 
+            	hairColor = Color.decode((String) value);
                 break; 
             case "ecl": 
             	eyeColor = (Color) convertAcronym(key); 
+            	eyeColor = Color.decode((String) value);
                 break; 
             case "pid":
             	passportID = (String) convertAcronym(key);
+            	passportID = (String) value;
             	break;
             case "cid":
             	countryID = (int) convertAcronym(key);
+            	countryID = (int) Integer.parseInt(value.toString());
             	break;
             default: 
         } 
 	}
 	
-	private boolean isValidPassport() {
+	boolean isValidPassport() {
 		return birthYear != 0
 			&& issueYear != 0
 			&& expirationYear != 0
