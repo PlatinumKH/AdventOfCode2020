@@ -132,8 +132,6 @@ public class Passport extends Converter {
 		if (hairColor != "" && hairColor.length() == 7) {
 			char[] hairColorArray = hairColor.toCharArray();
 			
-			int length = hairColor.length();
-			
 			if (hairColorArray[0] == '#') {
 				for (int i = 1; i < 7; i++) {
 					if (!(Character.isDigit(hairColorArray[i]) 
