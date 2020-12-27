@@ -18,6 +18,7 @@ public class solution {
 		readInput(filePath, passports);
 		
 		System.out.println(partOneSolver(passports));
+		System.out.println(partTwoSolver(passports));
 	}
 	
 	static void readInput(String filePath, List<Passport> passports) {
@@ -54,6 +55,17 @@ public class solution {
 		
 		for (Passport passport : passports) {
 			if (passport.isValidPassport()) noOfValidPassports++;
+		}
+		
+		return noOfValidPassports;
+		
+	}
+	
+	static int partTwoSolver(List<Passport> passports) {
+		int noOfValidPassports = 0;
+		
+		for (Passport passport : passports) {
+			if (passport.isValidPassportPartTwo()) noOfValidPassports++;
 		}
 		
 		return noOfValidPassports;

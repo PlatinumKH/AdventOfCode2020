@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class Passport extends Converter{
+public class Passport extends Converter {
 
 	int birthYear = 0;
 	int issueYear = 0;
@@ -11,7 +11,7 @@ public class Passport extends Converter{
 	String passportID = "";
 	int countryID = 0;
 	
-	Passport(Map<String, Object> values){
+	Passport(Map<String, Object> values) {
 		
 		for (Map.Entry<String, Object> entry : values.entrySet()) {
 			
@@ -70,7 +70,109 @@ public class Passport extends Converter{
         && !hairColor.isEmpty()
         && !eyeColor.isEmpty()
         && !passportID.isEmpty();
+	}
+	
+	boolean isValidPassportPartTwo() {
+	    return birthYearValid()
+	        && issueYearValid()
+	        && expirationYearValid()
+	        && heightValid()
+	        && hairColorValid()
+	        && eyeColorValid()
+	        && passportIDValid();
+		}
+	
+	boolean birthYearValid() {
+		return birthYear != 0 
+				&& String.valueOf(birthYear).length() == 4
+				&& birthYear >= 1920
+				&& birthYear <= 2002;
+	}
+	
+	boolean issueYearValid() {
+		return issueYear != 0 
+				&& String.valueOf(issueYear).length() == 4
+				&& issueYear >= 2010
+				&& issueYear <= 2020;
+	}
+	
+	boolean expirationYearValid() {
+		return expirationYear != 0 
+				&& String.valueOf(expirationYear).length() == 4
+				&& expirationYear >= 2020
+				&& expirationYear <= 2030;
+	}
+	
+	boolean heightValid() {
+		if (height != "" && height.length() > 2) {
+			char[] heightArray = height.toCharArray();
+			
+			int length = height.length();
+			
+			String measurement = "" + heightArray[length - 2] + heightArray[length - 1];
+			
+			if (measurement.equals("cm") || measurement.equals("in")) {
+				String num = "";
+				
+				for (int i = 0; i < length - 2; i++) {
+					num = num + heightArray[i];
+				}
+				
+				int numValue = Integer.parseInt(num);
+				
+				return (measurement.equals("cm") && numValue >= 150 && numValue <= 193) 
+						|| (measurement.equals("in") && numValue >= 59 && numValue <= 76);
+			}
+		}
 		
+		return false;
+	}
+	
+	boolean hairColorValid() {
+		if (hairColor != "" && hairColor.length() == 7) {
+			char[] hairColorArray = hairColor.toCharArray();
+			
+			int length = hairColor.length();
+			
+			if (hairColorArray[0] == '#') {
+				for (int i = 1; i < 7; i++) {
+					if (!(Character.isDigit(hairColorArray[i]) 
+							|| (hairColorArray[i] >= 'a' && hairColorArray[i] <= 'l'))) 
+						return false;
+				}
+				
+				return true;
+			}
+			
+		}
+		
+		return false;
+	}
+	
+	boolean eyeColorValid() {
+		return eyeColor.equals("amb")
+			|| eyeColor.equals("blu")
+			|| eyeColor.equals("brn")
+			|| eyeColor.equals("gry")
+			|| eyeColor.equals("grn")
+			|| eyeColor.equals("hzl")
+			|| eyeColor.equals("oth");
+	}
+	
+	boolean passportIDValid() {
+		if (passportID.length() == 9) {
+			
+			char[] passportIDArray = passportID.toCharArray();
+			
+			for (int i = 0; i < 9; i++) {
+				if (!Character.isDigit(passportIDArray[i]))
+					return false;
+			}
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 }
