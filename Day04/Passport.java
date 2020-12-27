@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.util.Map;
 
 public class Passport extends Converter{
