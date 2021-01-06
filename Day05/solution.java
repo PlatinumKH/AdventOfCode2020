@@ -4,6 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class solution {
@@ -15,7 +17,9 @@ public class solution {
 		
 		readInput(filePath, seatIDs);
 		
-		System.out.println(partOneSolver(seatIDs));
+		int maxSeatNum = partOneSolver(seatIDs);
+		
+		System.out.println(partTwoSolver(seatIDs, maxSeatNum));
 		
 	}
 	
@@ -70,6 +74,48 @@ public class solution {
 		}
 		
 		return maxSeatNum;
+	}
+	
+static List<Integer> partTwoSolver(List<String> seatIDs, int maxSeatNum) {
+		
+		List<Integer> availableSeats = IntStream.rangeClosed(0, maxSeatNum).boxed().collect(Collectors.toList());
+		
+		for (String id : seatIDs) {
+			int min = 0;
+			int max = 127;
+			
+			char[] seatArray = id.toCharArray();
+			
+			int i = 0;
+			
+			for (; i < 7; i++) {
+				if (seatArray[i] == 'F') {
+					max = (min + max)/2;
+				} else if (seatArray[i] == 'B') {
+					min = (min + max)/2 + 1;
+				}
+			}
+			
+			int row = min;
+			
+			min = 0;
+			max = 7;
+			
+			for (; i < 10; i++) {
+				if (seatArray[i] == 'L') {
+					max = (min + max)/2;
+				} else if (seatArray[i] == 'R') {
+					min = (min + max)/2 + 1;
+				}
+			}
+			
+			int col = min;
+			
+			availableSeats.remove(Integer.valueOf(row * 8 + col));
+			
+		}
+		
+		return availableSeats;
 	}
 	
 }
