@@ -15,6 +15,8 @@ public class solution {
 		
 		readInput(filePath, seatIDs);
 		
+		System.out.println(partOneSolver(seatIDs));
+		
 	}
 	
 	static void readInput(String filePath,List<String> seatIDs) {
@@ -43,20 +45,31 @@ public class solution {
 			
 			for (; i < 7; i++) {
 				if (seatArray[i] == 'F') {
-					min = (min + max)/2;
-				} else if (seatArray[i] == 'B') {
 					max = (min + max)/2;
+				} else if (seatArray[i] == 'B') {
+					min = (min + max)/2 + 1;
 				}
 			}
 			
+			int row = min;
 			
+			min = 0;
+			max = 7;
+			
+			for (; i < 10; i++) {
+				if (seatArray[i] == 'L') {
+					max = (min + max)/2;
+				} else if (seatArray[i] == 'R') {
+					min = (min + max)/2 + 1;
+				}
+			}
+			
+			int col = min;
+			
+			maxSeatNum = Math.max(maxSeatNum, row * 8 + col);
 		}
 		
-		// FFBFBFBRRL
-		
-		
-		
-		return 0;
+		return maxSeatNum;
 	}
 	
 }
